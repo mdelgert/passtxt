@@ -1,0 +1,6 @@
+@PassTxt.WebAPI_HostAddress = http://localhost:5201
+
+GET {{PassTxt.WebAPI_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
