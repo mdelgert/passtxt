@@ -1,28 +1,79 @@
-﻿/* TopNavBar.razor.css */
-.top-nav {
+﻿.top-nav {
+    background-color: black;
+    color: white;
     position: fixed;
     top: 0;
     width: 100%;
-    background-color: black;
-    color: white;
-    padding: 10px 0;
-    text-align: center;
+    height: 3.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     z-index: 1000;
 }
 
 .top-nav-links {
     list-style: none;
     display: flex;
-    justify-content: space-around;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 1200px; /* Set max width to contain elements on larger screens */
+    padding: 0;
+    margin: 0;
 }
+
+    .top-nav-links li {
+        display: inline-flex;
+        align-items: center;
+        margin: 0 1rem;
+    }
 
 .top-nav a {
     color: white;
     text-decoration: none;
-    padding: 8px 16px;
+    display: flex;
+    align-items: center;
 }
 
-    .top-nav a:hover {
+    .top-nav a i {
+        margin-right: 8px;
+    }
+
+.search-bar {
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    max-width: 400px;
+}
+
+    .search-bar input[type="text"] {
+        padding: 6px 10px;
+        font-size: 1rem;
+        border: 1px solid #ccc;
+        border-radius: 4px 0 0 4px;
+        outline: none;
+        width: 100%;
+    }
+
+    .search-bar button {
+        background-color: #333;
+        border: none;
+        padding: 6px 10px;
+        border-radius: 0 4px 4px 0;
+        cursor: pointer;
+    }
+
+        .search-bar button i {
+            color: white;
+            font-size: 1.2rem;
+        }
+
+    .search-bar input[type="text"]:focus {
+        border-color: #777;
+    }
+
+    .top-nav a:hover, .search-bar button:hover {
         background-color: #555;
         border-radius: 4px;
     }

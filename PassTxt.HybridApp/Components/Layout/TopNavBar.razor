@@ -1,9 +1,63 @@
-﻿<header class="top-nav">
+﻿@inject NavigationManager Navigation
+
+<header class="top-nav">
     <nav>
         <ul class="top-nav-links">
-            <li><a href="/">Home</a></li>
-            <li><a href="/about">About</a></li>
-            <li><a href="/weather">Weather</a></li>
+            <!-- Left side icon and link -->
+            @* <li><a href="/"><i class="bi bi-house-door"></i> Home</a></li> *@
+
+            <!-- Display Current Page Name -->
+            <li class="current-page">
+                <span>@currentPage</span>
+            </li>
+
+            <!-- Center search bar -->
+            @* 
+            <li class="search-bar">
+                <input type="text" @bind="searchText" placeholder="Search..." aria-label="Search" />
+                <button type="button" @onclick="Search"><i class="bi bi-search"></i></button>
+            </li> 
+            *@
+
+            <!-- Right side icons -->
+            <li><a href="/help"><i class="bi bi-bell"></i></a></li>
+            <li><a href="/settings"><i class="bi bi-person-circle"></i></a></li>
         </ul>
     </nav>
 </header>
+
+@code {
+    private string searchText = string.Empty;
+    private string currentPage;
+
+    protected override void OnInitialized()
+    {
+        Navigation.LocationChanged += OnLocationChanged;
+        SetCurrentPage();
+    }
+
+    private void OnLocationChanged(object sender, LocationChangedEventArgs e)
+    {
+        SetCurrentPage();
+        InvokeAsync(StateHasChanged); // Updates the component
+    }
+
+    private void SetCurrentPage()
+    {
+        var uri = Navigation.ToBaseRelativePath(Navigation.Uri);
+        var pageName = string.IsNullOrEmpty(uri) ? "Home" : uri.Split('/').Last();
+
+        // Capitalize the first character of the page name
+        currentPage = char.ToUpper(pageName[0]) + pageName.Substring(1);
+    }
+
+    private void Search()
+    {
+        System.Diagnostics.Debug.WriteLine($"Search text: {searchText}");
+    }
+
+    public void Dispose()
+    {
+        Navigation.LocationChanged -= OnLocationChanged;
+    }
+}

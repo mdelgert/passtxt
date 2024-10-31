@@ -1,5 +1,43 @@
 ﻿@page "/"
 
-<h1>Hello, world!</h1>
+@* <h1>Home</h1> *@
 
-Welcome to your new app.
+<p>@buttonClicked</p>
+
+<button class="btn btn-primary w-100 mb-2" @onclick='() => HandleButtonClick("Primary")'>
+    <i class="bi bi-star-fill me-2"></i> Primary
+</button>
+<button class="btn btn-secondary w-100 mb-2" @onclick='() => HandleButtonClick("Secondary")'>
+    <i class="bi bi-alarm me-2"></i> Secondary
+</button>
+<button class="btn btn-success w-100 mb-2" @onclick='() => HandleButtonClick("Success")'>
+    <i class="bi bi-check-circle me-2"></i> Success
+</button>
+<button class="btn btn-danger w-100 mb-2" @onclick='() => HandleButtonClick("Danger")'>
+    <i class="bi bi-exclamation-triangle me-2"></i> Danger
+</button>
+<button class="btn btn-warning w-100 mb-2" @onclick='() => HandleButtonClick("Warning")'>
+    <i class="bi bi-exclamation-circle me-2"></i> Warning
+</button>
+<button class="btn btn-info w-100 mb-2" @onclick='() => HandleButtonClick("Info")'>
+    <i class="bi bi-info-circle me-2"></i> Info
+</button>
+<button class="btn btn-light w-100 mb-2" @onclick='() => HandleButtonClick("Light")'>
+    <i class="bi bi-lightbulb me-2"></i> Light
+</button>
+<button class="btn btn-dark w-100 mb-2" @onclick='() => HandleButtonClick("Dark")'>
+    <i class="bi bi-moon me-2"></i> Dark
+</button>
+<button class="btn btn-link w-100 mb-2" @onclick='() => HandleButtonClick("Link")'>
+    <i class="bi bi-link-45deg me-2"></i> Link
+</button>
+
+@code {
+    private string buttonClicked = string.Empty;
+
+    private void HandleButtonClick(string buttonName)
+    {
+        buttonClicked = $"Button clicked: {buttonName}";
+        System.Diagnostics.Debug.WriteLine($"Button {buttonName} clicked.");
+    }
+}
