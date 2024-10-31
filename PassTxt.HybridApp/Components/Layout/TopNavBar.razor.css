@@ -1,0 +1,28 @@
+﻿/* TopNavBar.razor.css */
+.top-nav {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background-color: black;
+    color: white;
+    padding: 10px 0;
+    text-align: center;
+    z-index: 1000;
+}
+
+.top-nav-links {
+    list-style: none;
+    display: flex;
+    justify-content: space-around;
+}
+
+.top-nav a {
+    color: white;
+    text-decoration: none;
+    padding: 8px 16px;
+}
+
+    .top-nav a:hover {
+        background-color: #555;
+        border-radius: 4px;
+    }

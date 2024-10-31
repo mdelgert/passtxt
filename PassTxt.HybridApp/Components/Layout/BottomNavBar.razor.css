@@ -1,0 +1,28 @@
+﻿/* BottomNavBar.razor.css */
+.bottom-nav {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background-color: black;
+    color: white;
+    padding: 10px 0;
+    text-align: center;
+    z-index: 1000;
+}
+
+.bottom-nav-links {
+    list-style: none;
+    display: flex;
+    justify-content: space-around;
+}
+
+.bottom-nav a {
+    color: white;
+    text-decoration: none;
+    padding: 8px 16px;
+}
+
+    .bottom-nav a:hover {
+        background-color: #555;
+        border-radius: 4px;
+    }
