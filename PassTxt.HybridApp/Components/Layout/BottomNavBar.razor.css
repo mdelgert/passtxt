@@ -14,15 +14,29 @@
     list-style: none;
     display: flex;
     justify-content: space-around;
+    padding: 0;
+    margin: 0;
 }
+
+    .bottom-nav-links li {
+        display: inline;
+    }
 
 .bottom-nav a {
     color: white;
     text-decoration: none;
     padding: 8px 16px;
+    display: flex;
+    align-items: center;
 }
+
+    .bottom-nav a i {
+        margin-right: 8px; /* Space between icon and text */
+        font-size: 1.2rem; /* Adjust icon size */
+    }
 
     .bottom-nav a:hover {
         background-color: #555;
         border-radius: 4px;
     }
+
