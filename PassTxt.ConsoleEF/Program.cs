@@ -1,6 +1,8 @@
 ﻿// Program.cs
 using System;
+using System.IO;
 using System.Linq;
+using Microsoft.Extensions.Configuration; // Required for ConfigurationBuilder
 using PassTxt.ConsoleEF;
 using PassTxt.ConsoleEF.Models;
 
@@ -10,7 +12,17 @@ namespace PassTxt.ConsoleEF
     {
         static void Main()
         {
-            using (var context = new AppDbContext())
+            // Build configuration
+            var configuration = new ConfigurationBuilder()
+                .SetBasePath(Directory.GetCurrentDirectory())
+                .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
+                .Build();
+
+            // Get the connection string
+            string connectionString = configuration.GetConnectionString("DefaultConnection");
+
+            // Pass the connection string to AppDbContext
+            using (var context = new AppDbContext(connectionString))
             {
                 // Create a new user
                 var user = new User { Username = "jdoe", Email = "jdoe@example.com" };
@@ -31,13 +43,13 @@ namespace PassTxt.ConsoleEF
                 }
 
                 // Delete user
-                //var deleteUser = context.Users.FirstOrDefault(u => u.Username == "jdoe");
-                //if (deleteUser != null)
-                //{
-                //    context.Users.Remove(deleteUser);
-                //    context.SaveChanges();
-                //    Console.WriteLine($"User {deleteUser.Username} deleted.");
-                //}
+                var deleteUser = context.Users.FirstOrDefault(u => u.Username == "jdoe");
+                if (deleteUser != null)
+                {
+                    context.Users.Remove(deleteUser);
+                    context.SaveChanges();
+                    Console.WriteLine($"User {deleteUser.Username} deleted.");
+                }
             }
         }
     }
