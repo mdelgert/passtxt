@@ -11,7 +11,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PassTxt.WebAPI", "PassTxt.W
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PassTxt.Shared", "PassTxt.Shared\PassTxt.Shared.csproj", "{772CCDAB-304C-4994-A965-128FA9D5E6C0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PassTxt.HybridApp", "PassTxt.HybridApp\PassTxt.HybridApp.csproj", "{4C06C9DA-1B2A-409B-BB27-36A46171C067}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PassTxt.HybridApp", "PassTxt.HybridApp\PassTxt.HybridApp.csproj", "{4C06C9DA-1B2A-409B-BB27-36A46171C067}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PassTxt.ConsoleEF", "PassTxt.ConsoleEF\PassTxt.ConsoleEF.csproj", "{DA1470F7-770B-4CBD-8D97-36ADCDE80585}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -41,6 +43,10 @@ Global
 		{4C06C9DA-1B2A-409B-BB27-36A46171C067}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4C06C9DA-1B2A-409B-BB27-36A46171C067}.Release|Any CPU.Build.0 = Release|Any CPU
 		{4C06C9DA-1B2A-409B-BB27-36A46171C067}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{DA1470F7-770B-4CBD-8D97-36ADCDE80585}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DA1470F7-770B-4CBD-8D97-36ADCDE80585}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DA1470F7-770B-4CBD-8D97-36ADCDE80585}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DA1470F7-770B-4CBD-8D97-36ADCDE80585}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
