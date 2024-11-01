@@ -1,60 +1,33 @@
-﻿using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
-using PassTxt.Shared.Services;
-using Serilog;
+﻿// Program.cs
+using System;
+using Microsoft.EntityFrameworkCore;
+using PassTxt.Shared;
+using PassTxt.Shared.Models;
 
-namespace PassTxt.ConsoleApp;
+//Original logic injecting code fails to run ef migrations ****************
+//Should put migrations in a separate project *****************************
 
-internal class Program
+namespace PassTxt.ConsoleApp
 {
-    private static void Main(string[] args)
+    internal class Program
     {
-        // Allow passing environment via command-line argument or set from environment variables.
-        var environment = args.Length > 0 ? args[0].ToLowerInvariant() :
-            (Environment.GetEnvironmentVariable("DOTNET_ENVIRONMENT") ?? "development").ToLowerInvariant();
-
-        // Build configuration
-        var configuration = new ConfigurationBuilder()
-            .AddJsonFile("appsettings.json", true, true)
-            .AddJsonFile($"appsettings.{environment}.json", true, true)
-            .AddEnvironmentVariables()
-            .Build();
-
-        // Configure Serilog from appsettings.json
-        Log.Logger = new LoggerConfiguration()
-            .ReadFrom.Configuration(configuration)
-            .CreateLogger();
-
-        try
+        private static void Main()
         {
-            Log.Information("Starting the console app");
+            using var context = new AppDbContextFactory().CreateDbContext(null);
 
-            // Create a Host for the console app
-            var host = Host.CreateDefaultBuilder(args)
-                .UseSerilog()
-                .ConfigureServices((context, services) =>
-                {
-                    services.AddHttpClient<TimeService>();  // Register HttpClient for TimeService
-                    services.AddTransient<TemplateService>();
-                    services.AddTransient<ExampleService>();
-                })
-                .Build();
+            // Apply any pending migrations and create the database if it doesn’t exist
+            context.Database.Migrate();
 
-            // Resolve the TimeService and run the method
-            //var timeService = host.Services.GetRequiredService<TimeService>();
-            //timeService.GetTimeAsync().Wait();  // Make the REST call and log the response
+            // Add a sample note
+            var note = new NoteModel
+            {
+                Title = "Sample Note",
+                Note = "This is a sample note"
+            };
 
-            var exampleService = host.Services.GetRequiredService<ExampleService>();
-            exampleService.Hello();  // Log the message from appsettings.json
-        }
-        catch (Exception ex)
-        {
-            Log.Fatal(ex, "An error occurred while starting the application");
-        }
-        finally
-        {
-            Log.CloseAndFlush(); // Ensure that all logs are flushed before exit
+            context.Notes.Add(note);
+            context.SaveChanges();
+            Console.WriteLine("Note added to database.");
         }
     }
 }

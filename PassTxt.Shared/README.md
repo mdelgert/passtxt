@@ -8,3 +8,11 @@ dotnet add package Serilog.Sinks.Console
 dotnet add package Serilog.Sinks.File
 dotnet add package Serilog.Settings.Configuration
 dotnet add package Microsoft.Extensions.Http
+
+# EF Setup
+dotnet add package Microsoft.EntityFrameworkCore
+dotnet add package Microsoft.EntityFrameworkCore.SqlServer
+dotnet add package Microsoft.EntityFrameworkCore.Tools
+dotnet tool install --global dotnet-ef
+dotnet ef migrations add InitialCreate
+dotnet ef database update

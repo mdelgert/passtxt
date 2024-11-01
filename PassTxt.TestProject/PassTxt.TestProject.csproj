@@ -19,16 +19,6 @@
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="..\Settings\appsettings.json" Link="appsettings.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="..\Settings\appsettings.development.json" Link="appsettings.development.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-  </ItemGroup>
-  <ItemGroup>
     <Using Include="Xunit" />
   </ItemGroup>
 </Project>
